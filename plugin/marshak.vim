@@ -11,6 +11,8 @@ if !exists("g:trans_source_lang")
 endif
 
 function! TransBriefly()
-    silent !clear
-    execute "!" . g:trans_command . " " . g:trans_source_lang . ":" . g:trans_target_lang . " -b " . expand("<cword>")
+    let l:command = g:trans_command . " " . g:trans_source_lang . ":" . g:trans_target_lang . " -b " . expand("<cword>")
+    execute ":silent !" . l:command
 endfunction
+
+nnoremap <buffer> <leader>tb :call TransBriefly()<cr>
