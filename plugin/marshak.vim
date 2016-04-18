@@ -36,6 +36,11 @@ function! TransSelected() range
     call TransBriefly(l:text)
 endfunction
 
+function! TransCopy() range
+    let l:text = @"
+    call TransBriefly(l:text)
+endfunction
+
 " Get selected in vim text
 function! s:Get_visual_selection()
     " Thanks xolox from http://stackoverflow.com/a/6271254/794380
@@ -51,3 +56,4 @@ endfunction
 nnoremap <buffer> <leader>tl :call TransLine()<cr>
 nnoremap <buffer> <leader>tb :call TransBrieflyCurrentWord()<cr>
 vnoremap <buffer> <leader>ts :call TransSelected()<cr>
+nnoremap <buffer> <leader>tc :call TransCopy()<cr>
