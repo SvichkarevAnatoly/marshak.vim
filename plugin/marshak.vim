@@ -45,7 +45,9 @@ function! TransSentence()
     set clipboard&
     " Select sentence under cursor
     " and copy to unnamed register
-    execute "normal! \<ESC>visy"
+    " mq - save position of cursor
+    " `q - restore position
+    execute "normal! mq\<ESC>visy`q"
     " Save sentence to variable
     let l:sentence = getreg('"')
     " Restore unnamed register's state
