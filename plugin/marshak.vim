@@ -14,7 +14,8 @@ function! TransBriefly(word)
     let l:quatation_word = "\"" . a:word . "\""
     let l:options =  g:trans_source_lang . ":" . g:trans_target_lang . " -b "
     let l:command = g:trans_command . " " . l:options . l:quatation_word
-    silent let l:ret = system(l:command)
+    " Run trans, get translation and remove last 2 byte ^@
+    silent let l:ret = system(l:command)[:-2]
     echom l:ret
 endfunction
 
