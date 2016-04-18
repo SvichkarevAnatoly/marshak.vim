@@ -1,3 +1,4 @@
+" Defines {{{
 if !exists("g:trans_command")
     let g:trans_command = "trans"
 endif
@@ -9,7 +10,9 @@ endif
 if !exists("g:trans_source_lang")
     let g:trans_source_lang = ""
 endif
+" }}}
 
+" Core function for translate text {{{
 function! TransBriefly(text)
     let l:quatation_text = "\"" . a:text . "\""
     let l:options =  g:trans_source_lang . ":" . g:trans_target_lang . " -b "
@@ -19,21 +22,21 @@ function! TransBriefly(text)
     " Remove ^@
     let l:ret = substitute(l:ret, '[[:cntrl:]]', '', 'g')
     echom l:ret
-endfunction
+endfunction "}}}
 
-" Translate word under cursor
+" Translate word under cursor {{{
 function! TransWord()
     call TransBriefly(expand("<cword>"))
-endfunction
+endfunction "}}}
 
-" Translate current line under cursor
+" Translate current line under cursor {{{
 function! TransLine()
     call TransBriefly(getline('.'))
-endfunction
+endfunction "}}}
 
-" Translate sentence under cursor
-" Thanks Jeremy Cantrell
-" http://stackoverflow.com/a/677918/3465146
+" Translate sentence under cursor {{{
+" Thanks Jeremy Cantrell {{{
+" http://stackoverflow.com/a/677918/3465146 }}}
 function! TransSentence()
     " Save unnamed register's state
     let reg_save = getreg('"')
@@ -51,21 +54,21 @@ function! TransSentence()
     call setreg('"', reg_save, regtype_save)
     " Translate sentence
     call TransBriefly(l:sentence)
-endfunction
+endfunction " }}}
 
-" Translate selected in visual mode text
+" Translate selected in visual mode text {{{
 function! TransSelected() range
     let l:text = s:Get_visual_selection()
     call TransBriefly(l:text)
-endfunction
+endfunction "}}}
 
-" Translate copied in buffer text
+" Translate copied in buffer text {{{
 function! TransCopy()
     let l:text = @"
     call TransBriefly(l:text)
-endfunction
+endfunction "}}}
 
-" Get selected in vim text
+" Get selected text in visual mode {{{
 function! s:Get_visual_selection()
     " Thanks xolox from http://stackoverflow.com/a/6271254/794380
     let [lnum1, col1] = getpos("'<")[1:2]
@@ -75,11 +78,12 @@ function! s:Get_visual_selection()
     let lines[0] = lines[0][col1 - 1:]
     let text = join(lines, ' ')
     return substitute(text, '\n\+$', '', 'g')
-endfunction
+endfunction "}}}
 
-" Default mapping
+" Default mapping {{{
 nnoremap <buffer> <leader>tw :call TransWord()<cr>
 nnoremap <buffer> <leader>tl :call TransLine()<cr>
 vnoremap <buffer> <leader>tv :call TransSelected()<cr>
 nnoremap <buffer> <leader>ts :call TransSentence()<cr>
 nnoremap <buffer> <leader>ty :call TransCopy()<cr>
+"}}}
