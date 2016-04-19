@@ -95,6 +95,10 @@ nnoremap <buffer> <leader>ts :call TransSentence()<cr>
 nnoremap <buffer> <leader>ty :call TransCopy()<cr>
 "}}}
 
+" Command for custom input text translation {{{
+command! -nargs=+ Trans call TransBriefly(<q-args>)
+"}}}
+
 " Value of 'cpoptions' restored {{{
 let &cpo = s:save_cpo
 "}}}
