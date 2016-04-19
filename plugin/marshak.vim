@@ -1,3 +1,8 @@
+" Store the old value of 'cpoptions' {{{
+let s:save_cpo = &cpo
+set cpo&vim
+"}}}
+
 " Defines {{{
 if !exists("g:trans_command")
     let g:trans_command = "trans"
@@ -10,7 +15,7 @@ endif
 if !exists("g:trans_source_lang")
     let g:trans_source_lang = ""
 endif
-" }}}
+"}}}
 
 " Core function for translate text {{{
 function! TransBriefly(text)
@@ -88,4 +93,8 @@ nnoremap <buffer> <leader>tl :call TransLine()<cr>
 vnoremap <buffer> <leader>tv :call TransSelected()<cr>
 nnoremap <buffer> <leader>ts :call TransSentence()<cr>
 nnoremap <buffer> <leader>ty :call TransCopy()<cr>
+"}}}
+
+" Value of 'cpoptions' restored {{{
+let &cpo = s:save_cpo
 "}}}
