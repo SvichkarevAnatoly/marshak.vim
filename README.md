@@ -1,15 +1,15 @@
-Marshak
-=======
+# Marshak
+
 Marshak.vim is a lightweight Vim plugin to easily translation
 using **[Translate Shell](https://github.com/soimort/translate-shell)**.
 
-Prerequisites
--------------
+## Prerequisites
+
 Install **[Translate Shell](https://github.com/soimort/translate-shell/blob/develop/README.template.md#installation)**.
 
-Installation
-------------
-### VimPlug:
+## Installation
+
+#### VimPlug:
 
 Place this in your `.vimrc`:
 
@@ -25,9 +25,15 @@ Place this in your `.vimrc`:
 There are another Vim plugin managers
 (Pathogen, Vundle, NeoBundle).
 
-Options (Default)
-------------------------
-|Flag|Default|Description|
+## Commands
+
+|Command|Description|
+|-------|-----------|
+|`Trans {text_to_translate}`|Translate input `text_to_translate` (without double quote) to target language|
+
+## Options (Default)
+
+|Option|Default|Description|
 |----|-------|-----------|
 |`g:trans_command`|`trans`|Path to installed Translate Shell|
 |`g:trans_source_lang`||Specify the source language (Google Translate can identify the language of the source text automatically)|
@@ -42,14 +48,14 @@ for translation from Spanish to Russian.
 
 For another language use **[Languages and corresponding codes](https://github.com/soimort/translate-shell#code-list)**.
 
-Keybindings (Default)
------------
+## Keybindings (Default)
+
 - `<leader>tw` - Translate word under cursor
 - `<leader>tl` - Translate current line
 - `<leader>tv` - Translate selected in visual mode text
 - `<leader>ts` - Translate sentence under cursor
 - `<leader>ty` - Translate yanked text
 
-License
--------
+## License
+
 GPLv3.
