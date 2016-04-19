@@ -4,7 +4,7 @@ if !exists("g:trans_command")
 endif
 
 if !exists("g:trans_target_lang")
-    let g:trans_target_lang = "ru"
+    let g:trans_target_lang = "en"
 endif
 
 if !exists("g:trans_source_lang")
